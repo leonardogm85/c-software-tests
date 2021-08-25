@@ -4,7 +4,8 @@ namespace Demo.Tests
 {
     public class CalculadoraTests
     {
-        [Fact]
+        [Fact(DisplayName = "Calculadora - Somar 2 + 2 Deve Ser Igual a 4")]
+        [Trait("Categoria", "Testes Basicos - CalculadoraTests")]
         public void Calculadora_Somar_RetornarValorSoma()
         {
             // Arrange
@@ -17,7 +18,8 @@ namespace Demo.Tests
             Assert.Equal(4, resultado);
         }
 
-        [Theory]
+        [Theory(DisplayName = "Calculadora - Deve Somar Corretamente Os Valores")]
+        [Trait("Categoria", "Testes Basicos - CalculadoraTests")]
         [InlineData(1, 1, 2)]
         [InlineData(2, 2, 4)]
         [InlineData(4, 2, 6)]

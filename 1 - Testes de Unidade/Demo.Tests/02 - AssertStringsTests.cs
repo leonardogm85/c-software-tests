@@ -4,7 +4,8 @@ namespace Demo.Tests
 {
     public class AssertStringsTests
     {
-        [Fact]
+        [Fact(DisplayName = "StringsTools - Deve Unir Os Nomes")]
+        [Trait("Categoria", "Testes Basicos - AssertStringsTests")]
         public void StringsTools_UnirNomes_RetornarNomeCompleto()
         {
             // Arrange
@@ -17,7 +18,8 @@ namespace Demo.Tests
             Assert.Equal("Eduardo Pires", nomeCompleto);
         }
 
-        [Fact]
+        [Fact(DisplayName = "StringsTools - Deve Unir Os Nomes Ignorando O Case")]
+        [Trait("Categoria", "Testes Basicos - AssertStringsTests")]
         public void StringsTools_UnirNomes_DeveIgnorarCase()
         {
             // Arrange
@@ -30,7 +32,8 @@ namespace Demo.Tests
             Assert.Equal("EDUARDO PIRES", nomeCompleto, ignoreCase: true);
         }
 
-        [Fact]
+        [Fact(DisplayName = "StringsTools - Deve Unir Os Nomes E Conter Trecho")]
+        [Trait("Categoria", "Testes Basicos - AssertStringsTests")]
         public void StringsTools_UnirNomes_DeveConterTrecho()
         {
             // Arrange
@@ -43,7 +46,8 @@ namespace Demo.Tests
             Assert.Contains("ardo", nomeCompleto);
         }
 
-        [Fact]
+        [Fact(DisplayName = "StringsTools - Deve Unir Os Nomes E Começar Com")]
+        [Trait("Categoria", "Testes Basicos - AssertStringsTests")]
         public void StringsTools_UnirNomes_DeveComecarCom()
         {
             // Arrange
@@ -56,7 +60,8 @@ namespace Demo.Tests
             Assert.StartsWith("Edu", nomeCompleto);
         }
 
-        [Fact]
+        [Fact(DisplayName = "StringsTools - Deve Unir Os Nomes E Terminar Com")]
+        [Trait("Categoria", "Testes Basicos - AssertStringsTests")]
         public void StringsTools_UnirNomes_DeveAcabarCom()
         {
             // Arrange
@@ -69,7 +74,8 @@ namespace Demo.Tests
             Assert.EndsWith("res", nomeCompleto);
         }
 
-        [Fact]
+        [Fact(DisplayName = "StringsTools - Deve Unir Os Nomes E Ser Valido Com Expressão Regular")]
+        [Trait("Categoria", "Testes Basicos - AssertStringsTests")]
         public void StringsTools_UnirNomes_ValidarExpressaoRegular()
         {
             // Arrange

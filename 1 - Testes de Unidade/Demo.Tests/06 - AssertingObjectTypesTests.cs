@@ -4,7 +4,8 @@ namespace Demo.Tests
 {
     public class AssertingObjectTypesTests
     {
-        [Fact]
+        [Fact(DisplayName = "FuncionarioFactory - Criar Deve Retornar Tipo Valido De Funcionário")]
+        [Trait("Categoria", "Testes Basicos - AssertingObjectTypesTests")]
         public void FuncionarioFactory_Criar_DeveRetornarTipoFuncionario()
         {
             // Arrange & Act
@@ -14,7 +15,8 @@ namespace Demo.Tests
             Assert.IsType<Funcionario>(funcionario);
         }
 
-        [Fact]
+        [Fact(DisplayName = "FuncionarioFactory - Criar Deve Retornar Tipo Derivado De Pessoa")]
+        [Trait("Categoria", "Testes Basicos - AssertingObjectTypesTests")]
         public void FuncionarioFactory_Criar_DeveRetornarTipoDerivadoPessoa()
         {
             // Arrange & Act

@@ -4,7 +4,8 @@ namespace Demo.Tests
 {
     public class AssertingRangesTests
     {
-        [Theory]
+        [Theory(DisplayName = "Funcionário - Faixas Salariais Devem Respeitar Nível Proficional")]
+        [Trait("Categoria", "Testes Basicos - AssertingRangesTests")]
         [InlineData(700)]
         [InlineData(1500)]
         [InlineData(2000)]

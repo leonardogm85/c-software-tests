@@ -3,21 +3,23 @@ using System.Collections.Generic;
 
 namespace Demo
 {
-    public class Pessoa
+    public abstract class Pessoa
     {
         public string Nome { get; protected set; }
-        public string Apelido { get; set; }
+        public string Apelido { get; protected set; }
     }
 
     public class Funcionario : Pessoa
     {
         public double Salario { get; private set; }
         public NivelProfissional NivelProfissional { get; private set; }
-        public IList<string> Habilidades { get; set; }
+        public IEnumerable<string> Habilidades { get; private set; }
 
         public Funcionario(string nome, double salario)
         {
-            Nome = string.IsNullOrEmpty(nome) ? "Fulano" : nome;
+            Nome = string.IsNullOrEmpty(nome)
+                ? "Fulano"
+                : nome;
 
             DefinirSalario(salario);
             DefinirHabilidades();
@@ -36,11 +38,11 @@ namespace Demo
             {
                 NivelProfissional = NivelProfissional.Junior;
             }
-            else if (salario >= 2000 && salario < 8000)
+            else if (salario < 8000)
             {
                 NivelProfissional = NivelProfissional.Pleno;
             }
-            else if (salario >= 8000)
+            else
             {
                 NivelProfissional = NivelProfissional.Senior;
             }
@@ -54,18 +56,17 @@ namespace Demo
                 "OOP"
             };
 
-            Habilidades = habilidadesBasicas;
-
-            switch (NivelProfissional)
+            if (NivelProfissional == NivelProfissional.Pleno || NivelProfissional == NivelProfissional.Senior)
             {
-                case NivelProfissional.Pleno:
-                    habilidadesBasicas.Add("Testes");
-                    break;
-                case NivelProfissional.Senior:
-                    habilidadesBasicas.Add("Testes");
+                habilidadesBasicas.Add("Testes");
+
+                if (NivelProfissional == NivelProfissional.Senior)
+                {
                     habilidadesBasicas.Add("Microservices");
-                    break;
+                }
             }
+
+            Habilidades = habilidadesBasicas;
         }
     }
 
@@ -78,9 +79,6 @@ namespace Demo
 
     public class FuncionarioFactory
     {
-        public static Funcionario Criar(string nome, double salario)
-        {
-            return new Funcionario(nome, salario);
-        }
+        public static Funcionario Criar(string nome, double salario) => new Funcionario(nome, salario);
     }
 }

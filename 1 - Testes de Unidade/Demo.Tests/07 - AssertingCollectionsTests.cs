@@ -4,17 +4,19 @@ namespace Demo.Tests
 {
     public class AssertingCollectionsTests
     {
-        [Fact]
+        [Fact(DisplayName = "Funcionário - Deve Possuir Habilidades")]
+        [Trait("Categoria", "Testes Basicos - AssertingCollectionsTests")]
         public void FuncionarioFactory_Habilidades_NaoDevePossuirHabilidadesVazias()
         {
             // Arrange & Act
             var funcionario = FuncionarioFactory.Criar("Eduardo", 10000);
 
             // Assert
-            Assert.All(funcionario.Habilidades, habilidade => Assert.False(string.IsNullOrWhiteSpace(habilidade)));
+            Assert.All(funcionario.Habilidades, habilidade => Assert.False(string.IsNullOrEmpty(habilidade)));
         }
 
-        [Fact]
+        [Fact(DisplayName = "Funcionário - Junior Deve Possuir Habilidades Basicas")]
+        [Trait("Categoria", "Testes Basicos - AssertingCollectionsTests")]
         public void FuncionarioFactory_Habilidades_JuniorDevePossuirHabilidadeBasicas()
         {
             // Arrange & Act
@@ -24,7 +26,8 @@ namespace Demo.Tests
             Assert.Contains("OOP", funcionario.Habilidades);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Funcionário - Junior Não Deve Possuir Habilidades Avançadas")]
+        [Trait("Categoria", "Testes Basicos - AssertingCollectionsTests")]
         public void FuncionarioFactory_Habilidades_JuniorNaoDevePossuirHabilidadeAvancada()
         {
             // Arrange & Act
@@ -34,7 +37,8 @@ namespace Demo.Tests
             Assert.DoesNotContain("Microservices", funcionario.Habilidades);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Funcionário - Sênior Deve Possuir Todas As Habilidades")]
+        [Trait("Categoria", "Testes Basicos - AssertingCollectionsTests")]
         public void FuncionarioFactory_Habilidades_SeniorDevePossuirTodasHabilidades()
         {
             // Arrange & Act
