@@ -28,6 +28,7 @@ namespace Features.Clientes
             }
 
             _clienteRepository.Adicionar(cliente);
+
             _mediator.Publish(new ClienteEmailNotification("admin@me.com", cliente.Email, "", ""));
         }
 
@@ -39,6 +40,7 @@ namespace Features.Clientes
             }
 
             _clienteRepository.Atualizar(cliente);
+
             _mediator.Publish(new ClienteEmailNotification("admin@me.com", cliente.Email, "", ""));
         }
 
@@ -50,13 +52,16 @@ namespace Features.Clientes
             }
 
             cliente.Inativar();
+
             _clienteRepository.Atualizar(cliente);
+            
             _mediator.Publish(new ClienteEmailNotification("admin@me.com", cliente.Email, "", ""));
         }
 
         public void Remover(Cliente cliente)
         {
             _clienteRepository.Remover(cliente.Id);
+
             _mediator.Publish(new ClienteEmailNotification("admin@me.com", cliente.Email, "", ""));
         }
 

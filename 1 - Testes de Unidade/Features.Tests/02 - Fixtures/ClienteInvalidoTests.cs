@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Features.Tests.Traits
+namespace Features.Tests.Fixtures
 {
     [Collection(nameof(ClienteCollection))]
     public class ClienteInvalidoTests
