@@ -5,9 +5,9 @@ namespace Features.Tests.Fixtures
     [Collection(nameof(ClienteCollection))]
     public class ClienteValidoTests
     {
-        private readonly ClienteFixture _clienteFixture;
+        private readonly ClienteAutoMockerFixture _clienteFixture;
 
-        public ClienteValidoTests(ClienteFixture clienteFixture)
+        public ClienteValidoTests(ClienteAutoMockerFixture clienteFixture)
         {
             _clienteFixture = clienteFixture;
         }

@@ -3,7 +3,7 @@
 namespace Features.Tests.Fixtures
 {
     [CollectionDefinition(nameof(ClienteCollection))]
-    public class ClienteCollection : ICollectionFixture<ClienteFixture>
+    public class ClienteCollection : ICollectionFixture<ClienteAutoMockerFixture>
     {
     }
 }

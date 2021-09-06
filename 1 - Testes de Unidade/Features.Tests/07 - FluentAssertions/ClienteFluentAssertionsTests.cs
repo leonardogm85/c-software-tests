@@ -1,7 +1,8 @@
-﻿using Features.Tests.Fixtures;
+﻿using Features.Tests.DadosHumanos;
+using FluentAssertions;
 using Xunit;
 
-namespace Features.Tests.DadosHumanos
+namespace Features.Tests.FluentAssertions
 {
     [Collection(nameof(ClienteBogusCollection))]
     public class ClienteFluentAssertionsTests
@@ -14,7 +15,7 @@ namespace Features.Tests.DadosHumanos
         }
 
         [Fact(DisplayName = "Cliente - Deve Estar Válido")]
-        [Trait("Categoria", "Dados Humanos - ClienteBogusTests")]
+        [Trait("Categoria", "FluentAssertions - ClienteFluentAssertionsTests")]
         public void Cliente_NovoCliente_DeveEstarValido()
         {
             // Arrange
@@ -24,12 +25,12 @@ namespace Features.Tests.DadosHumanos
             var result = cliente.EhValido();
 
             // Assert
-            Assert.True(result);
-            Assert.Empty(cliente.ValidationResult.Errors);
+            result.Should().BeTrue(because: "O cliente deve ser válido");
+            cliente.ValidationResult.Errors.Should().BeEmpty(because: "Não deve ter erros de validação");
         }
 
         [Fact(DisplayName = "Cliente - Deve Estar Inválido")]
-        [Trait("Categoria", "Dados Humanos - ClienteBogusTests")]
+        [Trait("Categoria", "FluentAssertions - ClienteFluentAssertionsTests")]
         public void Cliente_NovoCliente_DeveEstarInvalido()
         {
             // Arrange
@@ -39,8 +40,8 @@ namespace Features.Tests.DadosHumanos
             var result = cliente.EhValido();
 
             // Assert
-            Assert.False(result);
-            Assert.NotEmpty(cliente.ValidationResult.Errors);
+            result.Should().BeFalse(because: "O cliente deve ser inválido");
+            cliente.ValidationResult.Errors.Should().NotBeEmpty(because: "Deve ter erros de validação");
         }
     }
 }

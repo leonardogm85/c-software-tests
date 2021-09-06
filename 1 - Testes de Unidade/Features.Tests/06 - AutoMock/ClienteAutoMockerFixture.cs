@@ -1,15 +1,19 @@
 ﻿using Bogus;
 using Bogus.DataSets;
 using Features.Clientes;
+using Moq.AutoMock;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Features.Tests.DadosHumanos
+namespace Features.Tests.AutoMock
 {
 
-    public class ClienteBogusFixture : IDisposable
+    public class ClienteAutoMockerFixture : IDisposable
     {
+        public ClienteService ClienteService;
+        public AutoMocker Mocker;
+
         public IEnumerable<Cliente> GerarClientes(int quantidade, bool ativo)
         {
             var genero = new Faker().PickRandom<Name.Gender>();
@@ -58,6 +62,15 @@ namespace Features.Tests.DadosHumanos
                     DateTime.Now));
 
             return cliente;
+        }
+
+        public ClienteService ObterClienteService()
+        {
+            Mocker = new AutoMocker();
+
+            ClienteService = Mocker.CreateInstance<ClienteService>();
+
+            return ClienteService;
         }
 
         public void Dispose()

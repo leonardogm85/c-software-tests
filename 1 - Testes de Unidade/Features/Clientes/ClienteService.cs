@@ -29,7 +29,7 @@ namespace Features.Clientes
 
             _clienteRepository.Adicionar(cliente);
 
-            _mediator.Publish(new ClienteEmailNotification("admin@me.com", cliente.Email, "", ""));
+            _mediator.Publish(new ClienteEmailNotification("admin@me.com", cliente.Email, "Olá", "Bem vindo!"));
         }
 
         public void Atualizar(Cliente cliente)
@@ -41,7 +41,7 @@ namespace Features.Clientes
 
             _clienteRepository.Atualizar(cliente);
 
-            _mediator.Publish(new ClienteEmailNotification("admin@me.com", cliente.Email, "", ""));
+            _mediator.Publish(new ClienteEmailNotification("admin@me.com", cliente.Email, "Mudanças", "Dê uma olhada!"));
         }
 
         public void Inativar(Cliente cliente)
