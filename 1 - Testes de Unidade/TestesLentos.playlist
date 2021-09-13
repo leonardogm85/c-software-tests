@@ -1,0 +1,41 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="Features.Tests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="Features.Tests.AutoMock" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="ClienteServiceAutoMockerTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Features.Tests.AutoMock.ClienteServiceAutoMockerTests.ClienteService_Adicionar_DeveFalharDevidoClienteInvalido" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ClienteService - Adicionar Cliente Com Falha" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="ClienteServiceFluentAssertionsTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Features.Tests.AutoMock.ClienteServiceFluentAssertionsTests.ClienteService_ObterTodosAtivos_DeveRetornarApenasClientesAtivos" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ClienteService - Obter Clientes Ativos" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>

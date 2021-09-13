@@ -1,6 +1,7 @@
 ﻿using Features.Tests.DadosHumanos;
 using FluentAssertions;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Features.Tests.FluentAssertions
 {
@@ -8,10 +9,12 @@ namespace Features.Tests.FluentAssertions
     public class ClienteFluentAssertionsTests
     {
         private readonly ClienteBogusFixture _clienteFixture;
+        private readonly ITestOutputHelper _outputHelper;
 
-        public ClienteFluentAssertionsTests(ClienteBogusFixture clienteFixture)
+        public ClienteFluentAssertionsTests(ClienteBogusFixture clienteFixture, ITestOutputHelper outputHelper)
         {
             _clienteFixture = clienteFixture;
+            _outputHelper = outputHelper;
         }
 
         [Fact(DisplayName = "Cliente - Deve Estar Válido")]
@@ -42,6 +45,8 @@ namespace Features.Tests.FluentAssertions
             // Assert
             result.Should().BeFalse(because: "O cliente deve ser inválido");
             cliente.ValidationResult.Errors.Should().NotBeEmpty(because: "Deve ter erros de validação");
+
+            _outputHelper.WriteLine($"Foram encontrados {cliente.ValidationResult.Errors.Count} erros nesta validação");
         }
     }
 }

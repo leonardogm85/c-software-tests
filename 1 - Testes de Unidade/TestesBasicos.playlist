@@ -1,0 +1,195 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="Demo.Tests" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="Demo.Tests" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="AssertNullBoolTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertNullBoolTests.Funcionario_Apelido_NaoDeveTerApelido" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Funcionário - Não Deve Ter Um Apelido" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertNullBoolTests.Funcionario_Nome_NaoDeveSerNuloOuVazio" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Funcionário - Deve Ter Um Nome" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="AssertingRangesTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertingRangesTests.Funcionario_Salario_FaixasSalariaisDevemRespeitarNivelProfissional" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Funcionário - Faixas Salariais Devem Respeitar Nível Proficional(salario: 700)" />
+                        <Property Name="DisplayName" Value="Funcionário - Faixas Salariais Devem Respeitar Nível Proficional(salario: 1500)" />
+                        <Property Name="DisplayName" Value="Funcionário - Faixas Salariais Devem Respeitar Nível Proficional(salario: 2000)" />
+                        <Property Name="DisplayName" Value="Funcionário - Faixas Salariais Devem Respeitar Nível Proficional(salario: 7500)" />
+                        <Property Name="DisplayName" Value="Funcionário - Faixas Salariais Devem Respeitar Nível Proficional(salario: 8000)" />
+                        <Property Name="DisplayName" Value="Funcionário - Faixas Salariais Devem Respeitar Nível Proficional(salario: 15000)" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="AssertNumbersTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertNumbersTests.Calculadora_Somar_DeveSerIgual" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Calculadora - Somar 1 + 2 Deve Ser Igual a 3" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertNumbersTests.Calculadora_Somar_NaoDeveSerIgual" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Calculadora - Somar 1,13123123123 + 2,2312313123 Deve Ser Diferente a 3,3" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="AssertStringsTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertStringsTests.StringsTools_UnirNomes_DeveAcabarCom" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="StringsTools - Deve Unir Os Nomes E Terminar Com" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertStringsTests.StringsTools_UnirNomes_DeveComecarCom" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="StringsTools - Deve Unir Os Nomes E Começar Com" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertStringsTests.StringsTools_UnirNomes_DeveConterTrecho" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="StringsTools - Deve Unir Os Nomes E Conter Trecho" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertStringsTests.StringsTools_UnirNomes_DeveIgnorarCase" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="StringsTools - Deve Unir Os Nomes Ignorando O Case" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertStringsTests.StringsTools_UnirNomes_RetornarNomeCompleto" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="StringsTools - Deve Unir Os Nomes" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertStringsTests.StringsTools_UnirNomes_ValidarExpressaoRegular" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="StringsTools - Deve Unir Os Nomes E Ser Valido Com Expressão Regular" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="AssertingCollectionsTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertingCollectionsTests.FuncionarioFactory_Habilidades_JuniorDevePossuirHabilidadeBasicas" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Funcionário - Junior Deve Possuir Habilidades Basicas" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertingCollectionsTests.FuncionarioFactory_Habilidades_JuniorNaoDevePossuirHabilidadeAvancada" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Funcionário - Junior Não Deve Possuir Habilidades Avançadas" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertingCollectionsTests.FuncionarioFactory_Habilidades_NaoDevePossuirHabilidadesVazias" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Funcionário - Deve Possuir Habilidades" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertingCollectionsTests.FuncionarioFactory_Habilidades_SeniorDevePossuirTodasHabilidades" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Funcionário - Sênior Deve Possuir Todas As Habilidades" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="AssertingObjectTypesTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertingObjectTypesTests.FuncionarioFactory_Criar_DeveRetornarTipoDerivadoPessoa" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="FuncionarioFactory - Criar Deve Retornar Tipo Derivado De Pessoa" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertingObjectTypesTests.FuncionarioFactory_Criar_DeveRetornarTipoFuncionario" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="FuncionarioFactory - Criar Deve Retornar Tipo Valido De Funcionário" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="CalculadoraTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.CalculadoraTests.Calculadora_Somar_RetornarValorSoma" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Calculadora - Somar 2 + 2 Deve Ser Igual a 4" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.CalculadoraTests.Calculadora_Somar_RetornarValoresSomaCorretos" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Calculadora - Deve Somar Corretamente Os Valores(v1: 1, v2: 1, total: 2)" />
+                        <Property Name="DisplayName" Value="Calculadora - Deve Somar Corretamente Os Valores(v1: 2, v2: 2, total: 4)" />
+                        <Property Name="DisplayName" Value="Calculadora - Deve Somar Corretamente Os Valores(v1: 4, v2: 2, total: 6)" />
+                        <Property Name="DisplayName" Value="Calculadora - Deve Somar Corretamente Os Valores(v1: 7, v2: 3, total: 10)" />
+                        <Property Name="DisplayName" Value="Calculadora - Deve Somar Corretamente Os Valores(v1: 6, v2: 6, total: 12)" />
+                        <Property Name="DisplayName" Value="Calculadora - Deve Somar Corretamente Os Valores(v1: 9, v2: 9, total: 18)" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="AssertingExceptionsTests" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertingExceptionsTests.Calculadora_Dividir_DeveRetornarErroDivisaoPorZero" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Calculadora - Deve Retornar Erro De Divisão Por Zero" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="Demo.Tests.AssertingExceptionsTests.Calculadora_Dividir_DeveRetornarErroSalarioInferiorPermitido" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="Funcionário - Deve Retornar Erro Salarial Inferior Ao Permitido" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>
