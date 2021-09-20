@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NerdStore.Core.DomainObjects;
+using System;
 using System.Linq;
 using Xunit;
 
@@ -43,6 +44,19 @@ namespace NerdStore.Vendas.Domain.Tests
             Assert.Equal(300, pedido.ValorTotal);
             Assert.Single(pedido.PedidoItems);
             Assert.Contains(pedido.PedidoItems, item => item.Quantidade == 3);
+        }
+
+        [Fact(DisplayName = "Pedido - Adicionar item pedido acima do permitido")]
+        [Trait("Categoria", "TDD - PedidoTests")]
+        public void AdicionarItemPedido_UnidadesItemAcimaDoPermitido_DeveRetornarException()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
+
+            var pedidoItem = new PedidoItem(Guid.NewGuid(), "Produto Teste", Pedido.MAX_UNIDADES_ITEM + 1, 100);
+
+            // Act & Assert
+            Assert.Throws<DomainException>(() => pedido.AdicionarItem(pedidoItem));
         }
     }
 }
