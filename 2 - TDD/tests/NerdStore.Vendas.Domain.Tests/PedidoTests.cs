@@ -8,7 +8,7 @@ namespace NerdStore.Vendas.Domain.Tests
     public class PedidoTests
     {
         [Fact(DisplayName = "Pedido - Adicionar item novo pedido")]
-        [Trait("Categoria", "TDD - PedidoTests")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
         public void AdicionarItemPedido_NovoPedido_DeveAtualizarValor()
         {
             // Arrange
@@ -24,7 +24,7 @@ namespace NerdStore.Vendas.Domain.Tests
         }
 
         [Fact(DisplayName = "Pedido - Adicionar item pedido existente")]
-        [Trait("Categoria", "TDD - PedidoTests")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
         public void AdicionarItemPedido_ItemExistente_DeveIncrementarUnidadesSomarValores()
         {
             // Arrange
@@ -47,7 +47,7 @@ namespace NerdStore.Vendas.Domain.Tests
         }
 
         [Fact(DisplayName = "Pedido - Adicionar item pedido acima do permitido")]
-        [Trait("Categoria", "TDD - PedidoTests")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
         public void AdicionarItemPedido_UnidadesItemAcimaDoPermitido_DeveRetornarException()
         {
             // Arrange
@@ -57,6 +57,24 @@ namespace NerdStore.Vendas.Domain.Tests
 
             // Act & Assert
             Assert.Throws<DomainException>(() => pedido.AdicionarItem(pedidoItem));
+        }
+
+        [Fact(DisplayName = "Pedido - Adicionar item pedido existente acima do permitido")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
+        public void AdicionarItemPedido_ItemExistenteSomaUnidadesAcimaDoPermitido_DeveRetornarException()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
+
+            var produtoId = Guid.NewGuid();
+
+            var pedidoItem1 = new PedidoItem(produtoId, "Produto Teste", 1, 100);
+            var pedidoItem2 = new PedidoItem(produtoId, "Produto Teste", Pedido.MAX_UNIDADES_ITEM, 100);
+
+            pedido.AdicionarItem(pedidoItem1);
+
+            // Act & Assert
+            Assert.Throws<DomainException>(() => pedido.AdicionarItem(pedidoItem2));
         }
     }
 }

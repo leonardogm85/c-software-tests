@@ -35,14 +35,33 @@ namespace NerdStore.Vendas.Domain
             PedidoStatus = PedidoStatus.Rascunho;
         }
 
-        public void AdicionarItem(PedidoItem pedidoItem)
+        private bool PedidoItemExistente(PedidoItem pedidoItem)
         {
-            if (pedidoItem.Quantidade > MAX_UNIDADES_ITEM)
+            return _pedidoItems.Any(item => item.ProdutoId == pedidoItem.ProdutoId);
+        }
+
+        private void ValidarQuantidadeItemPermitida(PedidoItem pedidoItem)
+        {
+            var quantidadeItem = pedidoItem.Quantidade;
+
+            if (PedidoItemExistente(pedidoItem))
+            {
+                var itemExistente = _pedidoItems.FirstOrDefault(item => item.ProdutoId == pedidoItem.ProdutoId);
+
+                quantidadeItem += itemExistente.Quantidade;
+            }
+
+            if (quantidadeItem > MAX_UNIDADES_ITEM)
             {
                 throw new DomainException($"Máximo de {MAX_UNIDADES_ITEM} unidades por produto.");
             }
+        }
 
-            if (_pedidoItems.Any(item => item.ProdutoId == pedidoItem.ProdutoId))
+        public void AdicionarItem(PedidoItem pedidoItem)
+        {
+            ValidarQuantidadeItemPermitida(pedidoItem);
+
+            if (PedidoItemExistente(pedidoItem))
             {
                 var itemExistente = _pedidoItems.FirstOrDefault(item => item.ProdutoId == pedidoItem.ProdutoId);
 
