@@ -140,7 +140,7 @@ namespace NerdStore.Vendas.Domain.Tests
 
         [Fact(DisplayName = "Pedido - Atualizar Item De Pedido Com Quantidade Acima Do Permitido")]
         [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
-        public void AtualizarItemPedido_ItemUnidadesAcimaDpPermitido_DeveRetornarException()
+        public void AtualizarItemPedido_ItemUnidadesAcimaDoPermitido_DeveRetornarException()
         {
             // Arrange
             var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
@@ -154,6 +154,43 @@ namespace NerdStore.Vendas.Domain.Tests
 
             // Act & Assert
             Assert.Throws<DomainException>(() => pedido.AtualizarItem(itemAtualizado));
+        }
+
+        [Fact(DisplayName = "Pedido - Remover Item De Pedido Inexistente")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
+        public void RemoverItemPedido_ItemNaoExisteNaLista_DeveRetornarException()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
+
+            var itemPedido = new PedidoItem(Guid.NewGuid(), "Produto Teste", 2, 100);
+
+            // Act & Assert
+            Assert.Throws<DomainException>(() => pedido.RemoverItem(itemPedido));
+        }
+
+        [Fact(DisplayName = "Pedido - Remover Item De Pedido Valido Com Valor Total Calculado")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
+        public void RemoverItemPedido_ItemExistente_DeveAtualizarValorTotal()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
+
+            var produtoId = Guid.NewGuid();
+
+            var pedidoItem1 = new PedidoItem(Guid.NewGuid(), "Produto 1", 2, 100);
+            var pedidoItem2 = new PedidoItem(produtoId, "Produto 2", 3, 50);
+
+            pedido.AdicionarItem(pedidoItem1);
+            pedido.AdicionarItem(pedidoItem2);
+
+            var valorTotal = pedidoItem2.Quantidade * pedidoItem2.ValorUnitario;
+
+            // Act
+            pedido.RemoverItem(pedidoItem1);
+
+            // Assert
+            Assert.Equal(valorTotal, pedido.ValorTotal);
         }
     }
 }

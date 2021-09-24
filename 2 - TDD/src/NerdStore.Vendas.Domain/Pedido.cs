@@ -98,6 +98,15 @@ namespace NerdStore.Vendas.Domain
             CalcularValorPedido();
         }
 
+        public void RemoverItem(PedidoItem pedidoItem)
+        {
+            ValidarPedidoItemInexistente(pedidoItem);
+
+            _pedidoItems.Remove(pedidoItem);
+
+            CalcularValorPedido();
+        }
+
         public static class PedidoFactory
         {
             public static Pedido NovoPedidoRascunho(Guid clienteId)
