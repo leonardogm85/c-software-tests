@@ -53,7 +53,7 @@ namespace NerdStore.Vendas.Domain.Tests
             // Arrange
             var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
 
-            var pedidoItem = new PedidoItem(Guid.NewGuid(), "Produto Teste", Pedido.MAX_UNIDADES_ITEM + 1, 100);
+            var pedidoItem = new PedidoItem(Guid.NewGuid(), "Produto Teste", Pedido.MaxUnidadesItem + 1, 100);
 
             // Act & Assert
             Assert.Throws<DomainException>(() => pedido.AdicionarItem(pedidoItem));
@@ -69,7 +69,7 @@ namespace NerdStore.Vendas.Domain.Tests
             var produtoId = Guid.NewGuid();
 
             var pedidoItem1 = new PedidoItem(produtoId, "Produto Teste", 1, 100);
-            var pedidoItem2 = new PedidoItem(produtoId, "Produto Teste", Pedido.MAX_UNIDADES_ITEM, 100);
+            var pedidoItem2 = new PedidoItem(produtoId, "Produto Teste", Pedido.MaxUnidadesItem, 100);
 
             pedido.AdicionarItem(pedidoItem1);
 
@@ -148,7 +148,7 @@ namespace NerdStore.Vendas.Domain.Tests
             var produtoId = Guid.NewGuid();
 
             var itemAdicionado = new PedidoItem(produtoId, "Produto Teste", 2, 100);
-            var itemAtualizado = new PedidoItem(produtoId, "Produto Teste", Pedido.MAX_UNIDADES_ITEM + 1, 100);
+            var itemAtualizado = new PedidoItem(produtoId, "Produto Teste", Pedido.MaxUnidadesItem + 1, 100);
 
             pedido.AdicionarItem(itemAdicionado);
 

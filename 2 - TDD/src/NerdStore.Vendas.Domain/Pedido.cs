@@ -7,8 +7,8 @@ namespace NerdStore.Vendas.Domain
 {
     public class Pedido
     {
-        public static int MAX_UNIDADES_ITEM => 15;
-        public static int MIN_UNIDADES_ITEM => 1;
+        public static int MaxUnidadesItem => 15;
+        public static int MinUnidadesItem => 1;
 
         protected Pedido()
         {
@@ -51,9 +51,9 @@ namespace NerdStore.Vendas.Domain
                 quantidadeItem += itemExistente.Quantidade;
             }
 
-            if (quantidadeItem > MAX_UNIDADES_ITEM)
+            if (quantidadeItem > MaxUnidadesItem)
             {
-                throw new DomainException($"Máximo de {MAX_UNIDADES_ITEM} unidades por produto.");
+                throw new DomainException($"Máximo de {MaxUnidadesItem} unidades por produto.");
             }
         }
 
@@ -127,9 +127,9 @@ namespace NerdStore.Vendas.Domain
     {
         public PedidoItem(Guid produtoId, string produtoNome, int quantidade, decimal valorUnitario)
         {
-            if (quantidade < Pedido.MIN_UNIDADES_ITEM)
+            if (quantidade < Pedido.MinUnidadesItem)
             {
-                throw new DomainException($"Mínimo de {Pedido.MIN_UNIDADES_ITEM} unidades por produto.");
+                throw new DomainException($"Mínimo de {Pedido.MinUnidadesItem} unidades por produto.");
             }
 
             ProdutoId = produtoId;
