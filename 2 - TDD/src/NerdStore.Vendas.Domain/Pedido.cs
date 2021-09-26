@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace NerdStore.Vendas.Domain
 {
-    public class Pedido
+    public class Pedido : Entity
     {
         public static int MaxUnidadesItem => 15;
         public static int MinUnidadesItem => 1;

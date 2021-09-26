@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="10.3.3" />
+    <PackageReference Include="mediatr" Version="9.0.0" />
   </ItemGroup>
 
 </Project>

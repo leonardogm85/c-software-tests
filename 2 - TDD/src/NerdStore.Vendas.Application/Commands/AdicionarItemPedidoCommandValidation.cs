@@ -23,7 +23,7 @@ namespace NerdStore.Vendas.Application.Commands
                 .NotEqual(Guid.Empty)
                 .WithMessage(IdProdutoErroMsg);
 
-            RuleFor(i => i.Nome)
+            RuleFor(i => i.ProdutoNome)
                 .NotEmpty()
                 .WithMessage(NomeErroMsg);
 
