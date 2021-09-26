@@ -304,5 +304,67 @@ namespace NerdStore.Vendas.Domain.Tests
             // Assert
             Assert.Equal(valorTotalComDesconto, pedido.ValorTotal);
         }
+
+        [Fact(DisplayName = "Pedido - Aplicar Voucher Com Desconto Que Exede Valor Total")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
+        public void Pedido_AplicarVoucherDescontoExecedeValorTotal_PedidoDeveTerValorZero()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
+
+            var pedidoItem1 = new PedidoItem(Guid.NewGuid(), "Produto 1", 2, 100);
+
+            pedido.AdicionarItem(pedidoItem1);
+
+            var voucher = new Voucher(
+                "PROMO-300-REAIS",
+                300,
+                null,
+                TipoDescontoVoucher.Valor,
+                1,
+                DateTime.Now.AddDays(1),
+                true,
+                false);
+
+            // Act
+            pedido.AplicarVoucher(voucher);
+
+            // Assert
+            Assert.Equal(0, pedido.ValorTotal);
+        }
+
+        [Fact(DisplayName = "Pedido - Aplicar Voucher Recalcular Valor Total Com Desconto Na Modificação Do Pedido")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
+        public void Pedido_AplicarVoucherModificarItensPedido_DeveCalcularDescontoValorTotal()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
+
+            var pedidoItem1 = new PedidoItem(Guid.NewGuid(), "Produto 1", 2, 100);
+
+            pedido.AdicionarItem(pedidoItem1);
+
+            var voucher = new Voucher(
+                "PROMO-50-REAIS",
+                50,
+                null,
+                TipoDescontoVoucher.Valor,
+                1,
+                DateTime.Now.AddDays(1),
+                true,
+                false);
+
+            pedido.AplicarVoucher(voucher);
+
+            var pedidoItem2 = new PedidoItem(Guid.NewGuid(), "Produto 2", 5, 10);
+
+            // Act
+            pedido.AdicionarItem(pedidoItem2);
+
+            // Assert
+            var valorTotal = pedido.PedidoItems.Sum(pedidoItem => pedidoItem.Quantidade * pedidoItem.ValorUnitario) - voucher.ValorDesconto;
+
+            Assert.Equal(valorTotal, pedido.ValorTotal);
+        }
     }
 }
