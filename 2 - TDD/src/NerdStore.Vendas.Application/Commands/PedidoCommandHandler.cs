@@ -39,9 +39,11 @@ namespace NerdStore.Vendas.Application.Commands
                 pedidoItem.Quantidade,
                 pedidoItem.ValorUnitario);
 
-            await _mediator.Publish(evento, cancellationToken);
+            // await _mediator.Publish(evento, cancellationToken);
 
-            return true;
+            pedido.AdicionarEvento(evento);
+
+            return await _pedidoRepository.UnitOfWork.Commit();
         }
     }
 }
