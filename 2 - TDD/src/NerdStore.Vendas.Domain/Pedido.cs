@@ -1,4 +1,5 @@
-﻿using NerdStore.Core.DomainObjects;
+﻿using FluentValidation.Results;
+using NerdStore.Core.DomainObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,12 @@ namespace NerdStore.Vendas.Domain
 
         public decimal ValorTotal { get; private set; }
 
+        public decimal Desconto { get; private set; }
+
+        public bool VoucherUtiliado { get; private set; }
+
+        public Voucher Voucher { get; private set; }
+
         public PedidoStatus PedidoStatus { get; private set; }
 
         private readonly List<PedidoItem> _pedidoItems;
@@ -28,6 +35,27 @@ namespace NerdStore.Vendas.Domain
         private void CalcularValorPedido()
         {
             ValorTotal = _pedidoItems.Sum(i => i.CalcularValor());
+        }
+
+        private void CalcularValorComDesconto()
+        {
+            if (!VoucherUtiliado)
+            {
+                return;
+            }
+
+            var desconto = 0m;
+
+            if (Voucher.TipoDescontoVoucher == TipoDescontoVoucher.Valor)
+            {
+                desconto = Voucher.ValorDesconto.GetValueOrDefault();
+            }
+            else
+            {
+                desconto = (ValorTotal * Voucher.PercentualDesconto.GetValueOrDefault() / 100);
+            }
+
+            ValorTotal -= desconto;
         }
 
         public void TornarRascunho()
@@ -105,6 +133,23 @@ namespace NerdStore.Vendas.Domain
             _pedidoItems.Remove(pedidoItem);
 
             CalcularValorPedido();
+        }
+
+        public ValidationResult AplicarVoucher(Voucher voucher)
+        {
+            var result = voucher.ValidarSeAplicavel();
+
+            if (!result.IsValid)
+            {
+                return result;
+            }
+
+            Voucher = voucher;
+            VoucherUtiliado = true;
+
+            CalcularValorComDesconto();
+
+            return result;
         }
 
         public static class PedidoFactory

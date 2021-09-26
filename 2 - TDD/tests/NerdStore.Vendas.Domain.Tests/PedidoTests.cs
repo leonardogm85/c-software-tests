@@ -192,5 +192,117 @@ namespace NerdStore.Vendas.Domain.Tests
             // Assert
             Assert.Equal(valorTotal, pedido.ValorTotal);
         }
+
+        [Fact(DisplayName = "Pedido - Aplicar Voucher Válido")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
+        public void Pedido_AplicarVoucherValido_DeveRetornarSemErros()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
+
+            var voucher = new Voucher(
+                "PROMO-15-REAIS",
+                15,
+                null,
+                TipoDescontoVoucher.Valor,
+                1,
+                DateTime.Now.AddDays(1),
+                true,
+                false);
+
+            // Act
+            var result = pedido.AplicarVoucher(voucher);
+
+            // Assert
+            Assert.True(result.IsValid);
+        }
+
+        [Fact(DisplayName = "Pedido - Aplicar Voucher Inválido")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
+        public void Pedido_AplicarVoucherInvalido_DeveRetornarComErros()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
+
+            var voucher = new Voucher(
+                "PROMO-15-REAIS",
+                15,
+                null,
+                TipoDescontoVoucher.Valor,
+                1,
+                DateTime.Now.AddDays(-1),
+                true,
+                true);
+
+            // Act
+            var result = pedido.AplicarVoucher(voucher);
+
+            // Assert
+            Assert.False(result.IsValid);
+        }
+
+        [Fact(DisplayName = "Pedido - Aplicar Voucher Do Tipo Valor")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
+        public void Pedido_AplicarVoucherTipoValor_DeveDescontarDoValorTotal()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
+
+            var pedidoItem1 = new PedidoItem(Guid.NewGuid(), "Produto 1", 2, 100);
+            var pedidoItem2 = new PedidoItem(Guid.NewGuid(), "Produto 2", 3, 50);
+
+            pedido.AdicionarItem(pedidoItem1);
+            pedido.AdicionarItem(pedidoItem2);
+
+            var voucher = new Voucher(
+                "PROMO-15-REAIS",
+                15,
+                null,
+                TipoDescontoVoucher.Valor,
+                1,
+                DateTime.Now.AddDays(1),
+                true,
+                false);
+
+            var valorTotalComDesconto = pedido.ValorTotal - voucher.ValorDesconto;
+
+            // Act
+            pedido.AplicarVoucher(voucher);
+
+            // Assert
+            Assert.Equal(valorTotalComDesconto, pedido.ValorTotal);
+        }
+
+        [Fact(DisplayName = "Pedido - Aplicar Voucher Do Tipo Percentual")]
+        [Trait("Categoria", "TDD - NerdStore.Vendas.Domain.Tests.PedidoTests")]
+        public void Pedido_AplicarVoucherTipoPercentual_DeveDescontarDoValorTotal()
+        {
+            // Arrange
+            var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(Guid.NewGuid());
+
+            var pedidoItem1 = new PedidoItem(Guid.NewGuid(), "Produto 1", 2, 100);
+            var pedidoItem2 = new PedidoItem(Guid.NewGuid(), "Produto 2", 3, 50);
+
+            pedido.AdicionarItem(pedidoItem1);
+            pedido.AdicionarItem(pedidoItem2);
+
+            var voucher = new Voucher(
+                "PROMO-15-OFF",
+                null,
+                15,
+                TipoDescontoVoucher.Porcentagem,
+                1,
+                DateTime.Now.AddDays(1),
+                true,
+                false);
+
+            var valorTotalComDesconto = pedido.ValorTotal - (pedido.ValorTotal * voucher.PercentualDesconto / 100);
+
+            // Act
+            pedido.AplicarVoucher(voucher);
+
+            // Assert
+            Assert.Equal(valorTotalComDesconto, pedido.ValorTotal);
+        }
     }
 }
