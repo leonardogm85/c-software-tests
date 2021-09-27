@@ -71,7 +71,7 @@ namespace NerdStore.Vendas.Domain
             PedidoStatus = PedidoStatus.Rascunho;
         }
 
-        private bool PedidoItemExistente(PedidoItem pedidoItem)
+        public bool PedidoItemExistente(PedidoItem pedidoItem)
         {
             return _pedidoItems.Any(item => item.ProdutoId == pedidoItem.ProdutoId);
         }
