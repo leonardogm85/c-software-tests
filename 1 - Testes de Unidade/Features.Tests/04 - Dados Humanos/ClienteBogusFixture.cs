@@ -7,7 +7,6 @@ using System.Linq;
 
 namespace Features.Tests.DadosHumanos
 {
-
     public class ClienteBogusFixture : IDisposable
     {
         public IEnumerable<Cliente> GerarClientes(int quantidade, bool ativo)

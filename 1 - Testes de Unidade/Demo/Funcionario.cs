@@ -3,12 +3,6 @@ using System.Collections.Generic;
 
 namespace Demo
 {
-    public abstract class Pessoa
-    {
-        public string Nome { get; protected set; }
-        public string Apelido { get; protected set; }
-    }
-
     public class Funcionario : Pessoa
     {
         public double Salario { get; private set; }
@@ -68,17 +62,5 @@ namespace Demo
 
             Habilidades = habilidadesBasicas;
         }
-    }
-
-    public enum NivelProfissional
-    {
-        Junior,
-        Pleno,
-        Senior
-    }
-
-    public class FuncionarioFactory
-    {
-        public static Funcionario Criar(string nome, double salario) => new Funcionario(nome, salario);
     }
 }

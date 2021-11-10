@@ -3,7 +3,6 @@ using System;
 
 namespace Features.Tests.Fixtures
 {
-
     public class ClienteAutoMockerFixture : IDisposable
     {
         public Cliente GerarClienteValido()

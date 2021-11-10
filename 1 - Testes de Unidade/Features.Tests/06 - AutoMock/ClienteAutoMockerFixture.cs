@@ -8,7 +8,6 @@ using System.Linq;
 
 namespace Features.Tests.AutoMock
 {
-
     public class ClienteAutoMockerFixture : IDisposable
     {
         public ClienteService ClienteService;
