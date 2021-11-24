@@ -1,4 +1,5 @@
-﻿using NerdStore.WebApp.Mvc;
+﻿using Bogus;
+using NerdStore.WebApp.Mvc;
 using NerdStore.WebApp.Tests.Config;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -28,14 +29,17 @@ namespace NerdStore.WebApp.Tests
 
             initialResponse.EnsureSuccessStatusCode();
 
-            var email = "leonardo.martins@toroinvestimentos.comm.br";
-            var senha = "Teste@123";
+            var antiForgeryTokenValue = _testsFixture
+                .GetAntiForgeryTokenValue(await initialResponse.Content.ReadAsStringAsync());
+
+            _testsFixture.GenerateUser();
 
             var formData = new Dictionary<string, string>
             {
-                { "Input.Email", email },
-                { "Input.Password", senha },
-                { "Input.ConfirmPassword", senha }
+                { _testsFixture.AntiForgeryTokenName, antiForgeryTokenValue },
+                { "Input.Email", _testsFixture.UserEmail },
+                { "Input.Password", _testsFixture.UserPassword },
+                { "Input.ConfirmPassword", _testsFixture.UserPassword }
             };
 
             var postRequest = new HttpRequestMessage(HttpMethod.Post, urlRequest)
@@ -51,7 +55,7 @@ namespace NerdStore.WebApp.Tests
 
             postResponse.EnsureSuccessStatusCode();
 
-            Assert.Contains($"Hello {email}!", responseString);
+            Assert.Contains($"Register confirmation", responseString);
         }
     }
 }
