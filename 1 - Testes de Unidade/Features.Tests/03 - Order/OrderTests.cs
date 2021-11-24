@@ -2,7 +2,7 @@
 
 namespace Features.Tests.Order
 {
-    [TestCaseOrderer("Features.Tests.Order.PriorityOrderer", "Features.Tests")]
+    [TestCaseOrderer(PriorityOrderer.ordererTypeName, PriorityOrderer.ordererAssemblyName)]
     public class OrderTests
     {
         public static bool Teste1Chamado;
@@ -10,7 +10,7 @@ namespace Features.Tests.Order
         public static bool Teste3Chamado;
         public static bool Teste4Chamado;
 
-        [Fact(DisplayName = "Teste 4"), TestPriority(3)]
+        [Fact(DisplayName = "Teste 4"), Priority(3)]
         [Trait("Categoria", "Order - OrdemTests")]
         public void Teste04()
         {
@@ -21,7 +21,7 @@ namespace Features.Tests.Order
             Assert.False(Teste2Chamado);
         }
 
-        [Fact(DisplayName = "Teste 1"), TestPriority(2)]
+        [Fact(DisplayName = "Teste 1"), Priority(2)]
         [Trait("Categoria", "Order - OrdemTests")]
         public void Teste01()
         {
@@ -32,7 +32,7 @@ namespace Features.Tests.Order
             Assert.False(Teste4Chamado);
         }
 
-        [Fact(DisplayName = "Teste 3"), TestPriority(1)]
+        [Fact(DisplayName = "Teste 3"), Priority(1)]
         [Trait("Categoria", "Order - OrdemTests")]
         public void Teste03()
         {
@@ -43,7 +43,7 @@ namespace Features.Tests.Order
             Assert.False(Teste4Chamado);
         }
 
-        [Fact(DisplayName = "Teste 2"), TestPriority(4)]
+        [Fact(DisplayName = "Teste 2"), Priority(4)]
         [Trait("Categoria", "Order - OrdemTests")]
         public void Teste02()
         {

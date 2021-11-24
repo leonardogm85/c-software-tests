@@ -3,12 +3,12 @@ using System.Linq;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace Features.Tests.Order
+namespace NerdStore.WebApp.Tests.Order
 {
     public class PriorityOrderer : ITestCaseOrderer
     {
-        public const string ordererTypeName = "Features.Tests.Order.PriorityOrderer";
-        public const string ordererAssemblyName = "Features.Tests";
+        public const string ordererTypeName = "NerdStore.WebApp.Tests.Order.PriorityOrderer";
+        public const string ordererAssemblyName = "NerdStore.WebApp.Tests";
 
         public IEnumerable<TTestCase> OrderTestCases<TTestCase>(IEnumerable<TTestCase> testCases) where TTestCase : ITestCase
         {
