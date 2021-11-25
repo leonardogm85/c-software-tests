@@ -1,6 +1,5 @@
 ﻿using NerdStore.WebApp.Mvc;
 using NerdStore.WebApp.Tests.Config;
-using NerdStore.WebApp.Tests.Order;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
