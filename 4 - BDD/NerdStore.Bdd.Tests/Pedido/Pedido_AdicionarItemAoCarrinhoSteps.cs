@@ -9,20 +9,28 @@ namespace NerdStore.Bdd.Tests.Pedido
     public class Pedido_AdicionarItemAoCarrinhoSteps
     {
         private readonly AutomacaoWebTestsFixture _testsFixture;
+        private readonly PedidoTela _pedidoTela;
+
+        private string _urlProduto;
 
         public Pedido_AdicionarItemAoCarrinhoSteps(AutomacaoWebTestsFixture testsFixture)
         {
             _testsFixture = testsFixture;
+            _pedidoTela = new PedidoTela(_testsFixture.BrowserHelper);
         }
 
         [Given(@"Que um produto esteja na vitrine")]
         public void DadoQueUmProdutoEstejaNaVitrine()
         {
             // Arrange
+            _pedidoTela.AcessarVitrineDeProdutos();
 
             // Act
+            _pedidoTela.ObterDetalhesDoProduto();
+            _urlProduto = _pedidoTela.ObterUrl();
 
             // Assert
+            Assert.True(_pedidoTela.ValidarProdutoDisponivel());
         }
 
         [Given(@"Esteja disponível no estoque")]
