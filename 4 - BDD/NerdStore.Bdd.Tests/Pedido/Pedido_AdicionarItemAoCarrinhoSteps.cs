@@ -1,10 +1,20 @@
-﻿using TechTalk.SpecFlow;
+﻿using NerdStore.Bdd.Tests.Config;
+using TechTalk.SpecFlow;
+using Xunit;
 
 namespace NerdStore.Bdd.Tests.Pedido
 {
     [Binding]
+    [Collection(nameof(AutomacaoWebTestsFixtureCollection))]
     public class Pedido_AdicionarItemAoCarrinhoSteps
     {
+        private readonly AutomacaoWebTestsFixture _testsFixture;
+
+        public Pedido_AdicionarItemAoCarrinhoSteps(AutomacaoWebTestsFixture testsFixture)
+        {
+            _testsFixture = testsFixture;
+        }
+
         [Given(@"Que um produto esteja na vitrine")]
         public void DadoQueUmProdutoEstejaNaVitrine()
         {
