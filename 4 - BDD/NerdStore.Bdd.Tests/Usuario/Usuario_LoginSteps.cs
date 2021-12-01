@@ -9,30 +9,46 @@ namespace NerdStore.Bdd.Tests.Usuario
     public class Usuario_LoginSteps
     {
         private readonly AutomacaoWebTestsFixture _testsFixture;
-        private readonly CadastroDeUsuarioTela _cadastroDeUsuarioTela;
+        private readonly LoginDeUsuarioTela _loginDeUsuarioTela;
 
         public Usuario_LoginSteps(AutomacaoWebTestsFixture testsFixture)
         {
             _testsFixture = testsFixture;
-            _cadastroDeUsuarioTela = new CadastroDeUsuarioTela(_testsFixture.BrowserHelper);
+            _loginDeUsuarioTela = new LoginDeUsuarioTela(_testsFixture.BrowserHelper);
         }
 
         [When(@"Ele clicar em login")]
         public void QuandoEleClicarEmLogin()
         {
-            ScenarioContext.Current.Pending();
+            // Act
+            _loginDeUsuarioTela.ClicarNoLinkLogin();
+
+            // Assert
+            Assert.Equal(_testsFixture.Configuration.LoginUrl, _loginDeUsuarioTela.ObterUrl());
         }
 
         [When(@"Preencher os dados do formulário de login")]
         public void QuandoPreencherOsDadosDoFormularioDeLogin(Table table)
         {
-            ScenarioContext.Current.Pending();
+            // Arrange
+            _testsFixture.Usuario = new UsuarioModel
+            {
+                Email = "teste@teste.com",
+                Senha = "Teste@123"
+            };
+
+            // Act
+            _loginDeUsuarioTela.PreencherFormularioLogin(_testsFixture.Usuario);
+
+            // Assert
+            Assert.True(_loginDeUsuarioTela.ValidarPreenchimentoFormularioLogin(_testsFixture.Usuario));
         }
 
         [When(@"Clicar no botão login")]
         public void QuandoClicarNoBotaoLogin()
         {
-            ScenarioContext.Current.Pending();
+            // Act
+            _loginDeUsuarioTela.ClicarNoBotaoLogin();
         }
     }
 }

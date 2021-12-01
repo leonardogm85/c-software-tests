@@ -42,7 +42,7 @@ namespace NerdStore.Bdd.Tests.Usuario
 
         public void ClicarNoBotaoRegistrar()
         {
-            Helper.ClicarPorXpath("html/body/div/main/div/div/form/button");
+            Helper.ClicarBotaoPorId("registerSubmit");
         }
     }
 }

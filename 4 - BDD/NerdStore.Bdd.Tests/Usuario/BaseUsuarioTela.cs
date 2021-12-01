@@ -17,5 +17,10 @@ namespace NerdStore.Bdd.Tests.Usuario
         {
             return Helper.ObterTextoElementoPorId("SaudacaoUsuario").Contains(usuario.Email);
         }
+
+        public bool ValidarMensagemDeErroFormulario(string mensagem)
+        {
+            return Helper.ObterElementoPorXpath("//div[@class='text-danger validation-summary-errors']/ul/li").Text.Equals(mensagem);
+        }
     }
 }
