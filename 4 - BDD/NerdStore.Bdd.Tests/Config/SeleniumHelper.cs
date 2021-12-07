@@ -56,6 +56,11 @@ namespace NerdStore.Bdd.Tests.Config
             return Wait.Until(ExpectedConditions.ElementIsVisible(By.ClassName(classeCss)));
         }
 
+        public IWebElement ObterElementoPorId(string idCampo)
+        {
+            return Wait.Until(ExpectedConditions.ElementIsVisible(By.Id(idCampo)));
+        }
+
         public IWebElement ObterElementoPorXpath(string xPath)
         {
             return Wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(xPath)));
