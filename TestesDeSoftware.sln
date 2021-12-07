@@ -47,9 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdStore.Catalogo.Domain",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdStore.WebApp.Mvc", "3 - Testes de Integracao\src\NerdStore.WebApp.Mvc\NerdStore.WebApp.Mvc.csproj", "{B45F6C60-DE0B-4344-94C3-FDF347065054}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - BDD", "4 - BDD", "{3D0F3161-B00C-479B-B02E-D9753130BF8D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - BDD - Testes Automatizados", "4 - BDD - Testes Automatizados", "{3D0F3161-B00C-479B-B02E-D9753130BF8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Bdd.Tests", "4 - BDD\NerdStore.Bdd.Tests\NerdStore.Bdd.Tests.csproj", "{A8575E82-9F30-4572-A1B2-CB5C99711C9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdStore.Bdd.Tests", "4 - BDD - Testes Automatizados\NerdStore.Bdd.Tests\NerdStore.Bdd.Tests.csproj", "{A8575E82-9F30-4572-A1B2-CB5C99711C9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

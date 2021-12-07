@@ -6,7 +6,7 @@ namespace NerdStore.Bdd.Tests.Config
 {
     public static class WebDriverFactory
     {
-        public static IWebDriver CreateWebDriver(Browser browser, string caminhoDriver, bool headlees)
+        public static IWebDriver CreateWebDriver(Browser browser, string caminhoDriver, bool headless)
         {
             IWebDriver webDriver = null;
 
@@ -15,9 +15,9 @@ namespace NerdStore.Bdd.Tests.Config
                 case Browser.Chrome:
                     var optionsChrome = new ChromeOptions();
 
-                    if (headlees)
+                    if (headless)
                     {
-                        optionsChrome.AddArguments("--headlees");
+                        optionsChrome.AddArguments("--headless");
                     }
 
                     webDriver = new ChromeDriver(caminhoDriver, optionsChrome);
@@ -25,9 +25,9 @@ namespace NerdStore.Bdd.Tests.Config
                 case Browser.Firefox:
                     var optionsFirefox = new FirefoxOptions();
 
-                    if (headlees)
+                    if (headless)
                     {
-                        optionsFirefox.AddArguments("--headlees");
+                        optionsFirefox.AddArguments("--headless");
                     }
 
                     webDriver = new FirefoxDriver(caminhoDriver, optionsFirefox);

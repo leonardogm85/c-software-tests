@@ -13,7 +13,7 @@ namespace NerdStore.Bdd.Tests.Config
         public AutomacaoWebTestsFixture()
         {
             Configuration = new ConfigurationHelper();
-            BrowserHelper = new SeleniumHelper(Browser.Chrome, Configuration, false);
+            BrowserHelper = new SeleniumHelper(Browser.Chrome, Configuration);
             Usuario = new UsuarioModel();
         }
 
