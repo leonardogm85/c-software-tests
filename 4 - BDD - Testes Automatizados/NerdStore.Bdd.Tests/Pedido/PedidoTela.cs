@@ -90,7 +90,7 @@ namespace NerdStore.Bdd.Tests.Pedido
 
         public void NavegarParaCarrinhoDeCompras()
         {
-            Helper.ObterElementoPorXpath("/html/body/header/nav/div/div/ul[1]/li[3]/a").Click();
+            Helper.ObterElementoPorXpath("/html/body/header/nav/div/div/ul[2]/li[3]/a").Click();
         }
 
         public int ObterQuantidadeDeItensPrimeiroProdutoCarrinho()

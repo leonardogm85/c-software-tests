@@ -1,8 +1,14 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NerdStore.Catalogo.Application.AutoMapper;
+using NerdStore.Catalogo.Data;
+using NerdStore.Vendas.Data;
+using NerdStore.WebApp.Mvc.Setup;
 
 namespace NerdStore.WebApp.Mvc
 {
@@ -17,16 +23,31 @@ namespace NerdStore.WebApp.Mvc
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CatalogoContext>
+                (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<VendasContext>
+                (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddIdentityCore<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false);
 
-            services
-                .AddControllersWithViews()
-                .AddRazorRuntimeCompilation();
+            services.AddControllersWithViews();
+
+            services.AddRazorPages();
+
+            services.AddAutoMapper(
+                typeof(DomainToViewModelMappingProfile),
+                typeof(ViewModelToDomainMappingProfile));
+
+            services.AddMediatR(typeof(Startup));
+
+            services.AddHttpContextAccessor();
+
+            services.RegisterServices();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseExceptionHandler("/Home/Error");
+            app.UseDeveloperExceptionPage();
             app.UseHsts();
 
             app.UseHttpsRedirection();

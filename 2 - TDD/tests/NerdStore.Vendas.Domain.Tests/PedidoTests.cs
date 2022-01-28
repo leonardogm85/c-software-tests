@@ -42,8 +42,8 @@ namespace NerdStore.Vendas.Domain.Tests
 
             // Assert
             Assert.Equal(300, pedido.ValorTotal);
-            Assert.Single(pedido.PedidoItems);
-            Assert.Contains(pedido.PedidoItems, item => item.ProdutoId == produtoId && item.Quantidade == 3);
+            Assert.Single(pedido.PedidoItens);
+            Assert.Contains(pedido.PedidoItens, item => item.ProdutoId == produtoId && item.Quantidade == 3);
         }
 
         [Fact(DisplayName = "Pedido - Adicionar Quantidade do Item De Pedido Acima Do Permitido")]
@@ -108,7 +108,7 @@ namespace NerdStore.Vendas.Domain.Tests
             pedido.AtualizarItem(itemAtualizado);
 
             // Assert
-            Assert.Contains(pedido.PedidoItems, item => item.ProdutoId == produtoId && item.Quantidade == 5);
+            Assert.Contains(pedido.PedidoItens, item => item.ProdutoId == produtoId && item.Quantidade == 5);
         }
 
         [Fact(DisplayName = "Pedido - Atualizar Item De Pedido Valido Com Valor Total Calculado")]
@@ -296,7 +296,7 @@ namespace NerdStore.Vendas.Domain.Tests
                 true,
                 false);
 
-            var valorTotalComDesconto = pedido.ValorTotal - (pedido.ValorTotal * voucher.PercentualDesconto / 100);
+            var valorTotalComDesconto = pedido.ValorTotal - (pedido.ValorTotal * voucher.Percentual / 100);
 
             // Act
             pedido.AplicarVoucher(voucher);
@@ -362,7 +362,7 @@ namespace NerdStore.Vendas.Domain.Tests
             pedido.AdicionarItem(pedidoItem2);
 
             // Assert
-            var valorTotal = pedido.PedidoItems.Sum(pedidoItem => pedidoItem.Quantidade * pedidoItem.ValorUnitario) - voucher.ValorDesconto;
+            var valorTotal = pedido.PedidoItens.Sum(pedidoItem => pedidoItem.Quantidade * pedidoItem.ValorUnitario) - voucher.ValorDesconto;
 
             Assert.Equal(valorTotal, pedido.ValorTotal);
         }

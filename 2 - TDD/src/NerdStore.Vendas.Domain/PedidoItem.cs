@@ -3,9 +3,9 @@ using System;
 
 namespace NerdStore.Vendas.Domain
 {
-    public class PedidoItem
+    public class PedidoItem : Entity
     {
-        public PedidoItem(Guid produtoId, string produtoNome, int quantidade, decimal valorUnitario)
+        public PedidoItem(Guid produtoId, string nomeProduto, int quantidade, decimal valorUnitario)
         {
             if (quantidade < Pedido.MinUnidadesItem)
             {
@@ -13,24 +13,41 @@ namespace NerdStore.Vendas.Domain
             }
 
             ProdutoId = produtoId;
-            ProdutoNome = produtoNome;
+            NomeProduto = nomeProduto;
             Quantidade = quantidade;
             ValorUnitario = valorUnitario;
         }
 
+        protected PedidoItem()
+        {
+        }
+
+        public Guid PedidoId { get; private set; }
         public Guid ProdutoId { get; private set; }
-        public string ProdutoNome { get; private set; }
+        public string NomeProduto { get; private set; }
         public int Quantidade { get; private set; }
         public decimal ValorUnitario { get; private set; }
 
-        internal decimal CalcularValor()
+        public Pedido Pedido { get; private set; }
+
+        public decimal CalcularValor()
         {
-            return ValorUnitario * Quantidade;
+            return Quantidade * ValorUnitario;
         }
 
-        internal void AdicionarUnidades(int quantidade)
+        internal void AdicionarUnidades(int unidades)
         {
-            Quantidade += quantidade;
+            Quantidade += unidades;
+        }
+
+        internal void AtualizarUnidades(int unidades)
+        {
+            Quantidade = unidades;
+        }
+
+        internal void AssociarPedido(Guid pedidoId)
+        {
+            PedidoId = pedidoId;
         }
     }
 }

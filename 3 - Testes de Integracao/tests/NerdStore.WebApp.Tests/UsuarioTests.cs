@@ -30,7 +30,7 @@ namespace NerdStore.WebApp.Tests
 
             initialResponse.EnsureSuccessStatusCode();
 
-            var antiForgeryTokenValue = _testsFixture
+            var antiForgeryTokenValue = await _testsFixture
                 .GetAntiForgeryTokenValue(await initialResponse.Content.ReadAsStringAsync());
 
             _testsFixture.GenerateUser();
@@ -52,9 +52,9 @@ namespace NerdStore.WebApp.Tests
             var postResponse = await _testsFixture.Client.SendAsync(postRequest);
 
             // Assert
-            var responseString = await postResponse.Content.ReadAsStringAsync();
-
             postResponse.EnsureSuccessStatusCode();
+
+            var responseString = await postResponse.Content.ReadAsStringAsync();
 
             Assert.Contains($"Hello {_testsFixture.UserEmail}!", responseString);
         }
@@ -71,7 +71,7 @@ namespace NerdStore.WebApp.Tests
 
             initialResponse.EnsureSuccessStatusCode();
 
-            var antiForgeryTokenValue = _testsFixture
+            var antiForgeryTokenValue = await _testsFixture
                 .GetAntiForgeryTokenValue(await initialResponse.Content.ReadAsStringAsync());
 
             _testsFixture.GenerateUser();
@@ -95,9 +95,9 @@ namespace NerdStore.WebApp.Tests
             var postResponse = await _testsFixture.Client.SendAsync(postRequest);
 
             // Assert
-            var responseString = await postResponse.Content.ReadAsStringAsync();
-
             postResponse.EnsureSuccessStatusCode();
+
+            var responseString = await postResponse.Content.ReadAsStringAsync();
 
             Assert.Contains("Passwords must have at least one non alphanumeric character.", responseString);
             Assert.Contains("Passwords must have at least one lowercase (&#x27;a&#x27;-&#x27;z&#x27;).", responseString);
@@ -116,7 +116,7 @@ namespace NerdStore.WebApp.Tests
 
             initialResponse.EnsureSuccessStatusCode();
 
-            var antiForgeryTokenValue = _testsFixture
+            var antiForgeryTokenValue = await _testsFixture
                 .GetAntiForgeryTokenValue(await initialResponse.Content.ReadAsStringAsync());
 
             var formData = new Dictionary<string, string>
@@ -135,9 +135,9 @@ namespace NerdStore.WebApp.Tests
             var postResponse = await _testsFixture.Client.SendAsync(postRequest);
 
             // Assert
-            var responseString = await postResponse.Content.ReadAsStringAsync();
-
             postResponse.EnsureSuccessStatusCode();
+
+            var responseString = await postResponse.Content.ReadAsStringAsync();
 
             Assert.Contains($"Hello {_testsFixture.UserEmail}!", responseString);
         }

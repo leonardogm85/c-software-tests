@@ -1,6 +1,7 @@
-﻿using MediatR;
-using Moq;
+﻿using Moq;
 using Moq.AutoMock;
+using NerdStore.Core.Communication.Mediator;
+using NerdStore.Core.Messages.CommonMessages.Notifications;
 using NerdStore.Vendas.Application.Commands;
 using NerdStore.Vendas.Domain;
 using System;
@@ -56,7 +57,7 @@ namespace NerdStore.Vendas.Application.Tests.Pedidos
             _mocker.GetMock<IPedidoRepository>().Verify(r => r.Adicionar(It.IsAny<Pedido>()), Times.Once);
             _mocker.GetMock<IPedidoRepository>().Verify(r => r.UnitOfWork.Commit(), Times.Once);
 
-            // _mocker.GetMock<IMediator>().Verify(m => m.Publish(It.IsAny<INotification>(), CancellationToken.None), Times.Once);
+            // _mocker.GetMock<IMediatorHandler>().Verify(m => m.PublicarNotificacao(It.IsAny<DomainNotification>()), Times.Once);
         }
 
         [Fact(DisplayName = "PedidoCommandHandler - Adicionar Novo Item Pedido Ao Rascunho")]
@@ -147,7 +148,7 @@ namespace NerdStore.Vendas.Application.Tests.Pedidos
             // Assert
             Assert.False(result);
 
-            _mocker.GetMock<IMediator>().Verify(m => m.Publish(It.IsAny<INotification>(), CancellationToken.None), Times.Exactly(5));
+            _mocker.GetMock<IMediatorHandler>().Verify(m => m.PublicarNotificacao(It.IsAny<DomainNotification>()), Times.Exactly(5));
         }
     }
 }
