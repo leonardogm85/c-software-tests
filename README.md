@@ -1,2 +1,2 @@
 # c-software-tests
-Dominando os Testes de Software
+Mastering Software Testing
